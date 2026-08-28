@@ -1,0 +1,21 @@
+import { NextRequest, NextResponse } from "next/server";
+import { isAdminRequest, ADMIN_COOKIE } from "@/lib/auth";
+
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+    const cookie = req.cookies.get(ADMIN_COOKIE)?.value;
+    if (!(await isAdminRequest(cookie))) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/admin/login";
+      return NextResponse.redirect(url);
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/admin/:path*"],
+};

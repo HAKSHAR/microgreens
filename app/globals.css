@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --soil-line: rgba(43, 38, 32, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-feature-settings: "ss01";
+}
+
+.font-display {
+  font-family: var(--font-fraunces), serif;
+}
+
+.hairline {
+  border-color: var(--soil-line);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-soil-900 px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-sprout-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sprout-600 disabled:opacity-40 disabled:pointer-events-none;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-soil-900/20 bg-transparent px-5 py-3 text-sm font-medium text-soil-900 transition-colors hover:border-soil-900 disabled:opacity-40 disabled:pointer-events-none;
+}
+
+.input {
+  @apply w-full rounded-sm border border-soil-900/20 bg-white px-3 py-2 text-sm text-soil-950 placeholder:text-soil-900/40 focus:border-sprout-600 focus:outline-none;
+}
+
+.label {
+  @apply mb-1 block text-xs font-medium uppercase tracking-wide text-soil-900/60;
+}
+
+::selection {
+  background: #9FCB6B;
+  color: #211D16;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
